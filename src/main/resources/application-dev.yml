@@ -1,0 +1,10 @@
+# application-dev.yml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskify
+    username: taskify_admin
+    password: taskify@2026
+  jpa:
+    show-sql: true
+jwt:
+  secret: C9Jty7E7B74IQYt7K6Ku5Xzm1GzhVz0cS7715eJ/EhSP1tfjdjI8xQQWB1WSTTfqqXDV5RAzPEpWLyPyDKGiGw== # chave jwt aleatoria para dev local

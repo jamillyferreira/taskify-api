@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: taskify-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - taskify-network
+
+volumes:
+  postgres-data:
+
+networks:
+  taskify-network:
+    driver: bridge

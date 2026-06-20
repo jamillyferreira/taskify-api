@@ -100,17 +100,16 @@ class TaskServiceTest {
     @Test
     @DisplayName("Deve criar tarefa com sucesso")
     void shouldCreateTaskWithSuccess() {
-        // arrange -> prepara o cenario
+
         when(taskMapper.toEntity(requestDTO)).thenReturn(task);
         when(taskRepository.save(any(Task.class))).thenReturn(task);
         when(taskMapper.toResponseDTO(any(Task.class))).thenReturn(responseDTO);
 
-        //act
         TaskResponseDTO result = taskService.createTask(requestDTO, authenticatedUser);
 
-        assertNotNull(result); // resultado nao pode ser nulo
-        assertEquals(responseDTO.id(), result.id()); // verifica se o id do response é igual do resultado
-        assertEquals(responseDTO.title(), result.title()); // verifica se o title é o mesmo do resulto
+        assertNotNull(result);
+        assertEquals(responseDTO.id(), result.id());
+        assertEquals(responseDTO.title(), result.title());
         assertEquals(responseDTO.description(), result.description());
         assertFalse(result.completed());
 
@@ -233,7 +232,7 @@ class TaskServiceTest {
         TaskRequestDTO requestWithoutPriority = new TaskRequestDTO(
                 "Test task",
                 "Description",
-                null, // prioridade nao informada na requisicao
+                null,
                 LocalDate.now().plusDays(7)
         );
 
@@ -283,6 +282,39 @@ class TaskServiceTest {
         verify(taskRepository).findById(1L);
         verify(taskRepository, never()).save(any(Task.class));
     }
+
+    @Test
+    @DisplayName("Deve alternar status da tarefa")
+    void shouldToggleTaskCompletion() {
+        Task pendingTask = Task.builder()
+                .id(1L)
+                .user(authenticatedUser)
+                .title("Test task")
+                .completed(false)
+                .build();
+
+        when(taskRepository.findById(1L)).thenReturn(Optional.of(pendingTask));
+        when(taskRepository.save(any(Task.class))).thenReturn(pendingTask);
+
+        taskService.toggleComplete(1L, authenticatedUser);
+
+        assertTrue(pendingTask.isCompleted());
+        verify(taskRepository).save(pendingTask);
+    }
+
+    @Test
+    @DisplayName("Deve deletar tarefa com sucesso")
+    void shouldDeleteTaskWithSuccess() {
+        when(taskRepository.findById(1L)).thenReturn(Optional.of(task));
+        doNothing().when(taskRepository).delete(task);
+
+        taskService.deleteTask(1L, authenticatedUser);
+
+        verify(taskRepository).findById(1L);
+        verify(taskRepository).delete(task);
+    }
+
+
 
 
 }

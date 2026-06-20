@@ -77,9 +77,15 @@ public class TaskService {
     }
 
     public void toggleComplete(Long id, User authenticatedUser) {
+        log.debug("Alternando status da tarefa {} para usuário {}", id, authenticatedUser.getId());
+
         Task task = findTaskAndValidateOwnership(id, authenticatedUser);
         task.toggleCompleted();
         taskRepository.save(task);
+
+        log.info("Status da tarefa {} alternado com sucesso - userId: {}, novo status: {}",
+                id, authenticatedUser.getId(), task.isCompleted()
+        );
     }
 
     public void deleteTask(Long id, User authenticatedUser) {

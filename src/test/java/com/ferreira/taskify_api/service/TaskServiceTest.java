@@ -3,6 +3,7 @@ package com.ferreira.taskify_api.service;
 import com.ferreira.taskify_api.dto.request.task.TaskRequestDTO;
 import com.ferreira.taskify_api.dto.request.task.TaskUpdateRequestDTO;
 import com.ferreira.taskify_api.dto.response.task.TaskResponseDTO;
+import com.ferreira.taskify_api.dto.response.task.TaskSummaryResponseDTO;
 import com.ferreira.taskify_api.enums.Priority;
 import com.ferreira.taskify_api.exception.ResourceNotFoundException;
 import com.ferreira.taskify_api.exception.TaskAccessDeniedException;
@@ -45,6 +46,7 @@ class TaskServiceTest {
     private TaskRequestDTO requestDTO;
     private TaskResponseDTO responseDTO;
     private TaskUpdateRequestDTO updateRequestDTO;
+    private TaskSummaryResponseDTO summaryResponseDTO;
 
     @BeforeEach
     void setUp() {
@@ -94,6 +96,15 @@ class TaskServiceTest {
                 "Descrição atualizada",
                 Priority.HIGH,
                 LocalDate.now().plusDays(14)
+        );
+        summaryResponseDTO = new TaskSummaryResponseDTO(
+                1L,
+                "user@test.com",
+                "Test Task",
+                "Description",
+                false,
+                LocalDate.now(),
+                Priority.MEDIUM
         );
     }
 
@@ -172,16 +183,16 @@ class TaskServiceTest {
     void shouldFindAllTasksByUserWithSuccess() {
         List<Task> tasks = List.of(task);
         when(taskRepository.findAllByUser(authenticatedUser)).thenReturn(tasks);
-        when(taskMapper.toResponseDTO(any(Task.class))).thenReturn(responseDTO);
+        when(taskMapper.toSummaryResponseDTO(any(Task.class))).thenReturn(summaryResponseDTO);
 
-        List<TaskResponseDTO> result = taskService.findAll(authenticatedUser);
+        List<TaskSummaryResponseDTO> result = taskService.findAll(authenticatedUser);
 
         assertNotNull(result);
         assertEquals(1L, result.size());
-        assertEquals(responseDTO.id(), result.getFirst().id());
+        assertEquals(summaryResponseDTO.id(), result.getFirst().id());
 
         verify(taskRepository).findAllByUser(authenticatedUser);
-        verify(taskMapper, times(tasks.size())).toResponseDTO(any(Task.class));
+        verify(taskMapper, times(tasks.size())).toSummaryResponseDTO(any(Task.class));
     }
 
 

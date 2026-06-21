@@ -1,7 +1,7 @@
 package com.ferreira.taskify_api.service;
 
-import com.ferreira.taskify_api.dto.request.ProfileUpdateRequestDTO;
-import com.ferreira.taskify_api.dto.response.UserResponseDTO;
+import com.ferreira.taskify_api.dto.request.user.ProfileUpdateRequestDTO;
+import com.ferreira.taskify_api.dto.response.user.UserResponseDTO;
 import com.ferreira.taskify_api.exception.BusinessException;
 import com.ferreira.taskify_api.mapper.user.UserMapper;
 import com.ferreira.taskify_api.model.User;

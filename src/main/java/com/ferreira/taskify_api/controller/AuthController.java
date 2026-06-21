@@ -1,9 +1,9 @@
 package com.ferreira.taskify_api.controller;
 
-import com.ferreira.taskify_api.dto.request.LoginRequestDTO;
-import com.ferreira.taskify_api.dto.request.RegisterRequestDTO;
-import com.ferreira.taskify_api.dto.response.LoginResponseDTO;
-import com.ferreira.taskify_api.dto.response.RegisterResponseDTO;
+import com.ferreira.taskify_api.dto.request.auth.LoginRequestDTO;
+import com.ferreira.taskify_api.dto.request.auth.RegisterRequestDTO;
+import com.ferreira.taskify_api.dto.response.auth.LoginResponseDTO;
+import com.ferreira.taskify_api.dto.response.auth.RegisterResponseDTO;
 import com.ferreira.taskify_api.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.ferreira.taskify_api.dto.request;
+package com.ferreira.taskify_api.dto.request.auth;
 
 
 import jakarta.validation.constraints.Email;

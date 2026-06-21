@@ -1,7 +1,8 @@
 package com.ferreira.taskify_api.mapper.task;
 
-import com.ferreira.taskify_api.dto.request.TaskRequestDTO;
-import com.ferreira.taskify_api.dto.response.TaskResponseDTO;
+import com.ferreira.taskify_api.dto.request.task.TaskRequestDTO;
+import com.ferreira.taskify_api.dto.response.task.TaskResponseDTO;
+import com.ferreira.taskify_api.dto.response.task.TaskSummaryResponseDTO;
 import com.ferreira.taskify_api.model.Task;
 
 import org.springframework.stereotype.Component;
@@ -30,6 +31,19 @@ public class TaskMapperImpl implements TaskMapper {
                 task.getPriority(),
                 task.getCreatedAt(),
                 task.getUpdatedAt()
+        );
+    }
+
+    @Override
+    public TaskSummaryResponseDTO toSummaryResponseDTO(Task task) {
+        return new TaskSummaryResponseDTO(
+                task.getId(),
+                task.getUser().getName(),
+                task.getTitle(),
+                task.getDescription(),
+                task.isCompleted(),
+                task.getDueDate(),
+                task.getPriority()
         );
     }
 }

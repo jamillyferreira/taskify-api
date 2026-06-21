@@ -1,4 +1,4 @@
-package com.ferreira.taskify_api.dto.response;
+package com.ferreira.taskify_api.dto.response.auth;
 
 public record RegisterResponseDTO(
         Long id,

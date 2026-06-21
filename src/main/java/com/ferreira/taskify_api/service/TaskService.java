@@ -1,8 +1,9 @@
 package com.ferreira.taskify_api.service;
 
-import com.ferreira.taskify_api.dto.request.TaskRequestDTO;
-import com.ferreira.taskify_api.dto.request.TaskUpdateRequestDTO;
-import com.ferreira.taskify_api.dto.response.TaskResponseDTO;
+import com.ferreira.taskify_api.dto.request.task.TaskRequestDTO;
+import com.ferreira.taskify_api.dto.request.task.TaskUpdateRequestDTO;
+import com.ferreira.taskify_api.dto.response.task.TaskResponseDTO;
+import com.ferreira.taskify_api.dto.response.task.TaskSummaryResponseDTO;
 import com.ferreira.taskify_api.enums.Priority;
 import com.ferreira.taskify_api.exception.ResourceNotFoundException;
 import com.ferreira.taskify_api.exception.TaskAccessDeniedException;
@@ -48,7 +49,7 @@ public class TaskService {
     }
 
     @Transactional(readOnly = true)
-    public List<TaskResponseDTO> findAll(User authenticatedUser) {
+    public List<TaskSummaryResponseDTO> findAll(User authenticatedUser) {
         log.debug("Listando tarefas do usuário {}", authenticatedUser.getId());
 
         List<Task> tasks = taskRepository.findAllByUser(authenticatedUser);
@@ -56,7 +57,7 @@ public class TaskService {
         log.info("Listagem de tarefas realizada - userId: {}, totalTasks: {}", authenticatedUser.getId(), tasks.size());
         return tasks
                 .stream()
-                .map(taskMapper::toResponseDTO)
+                .map(taskMapper::toSummaryResponseDTO)
                 .toList();
     }
 

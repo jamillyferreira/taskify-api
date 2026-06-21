@@ -1,8 +1,9 @@
 package com.ferreira.taskify_api.controller;
 
-import com.ferreira.taskify_api.dto.request.TaskRequestDTO;
-import com.ferreira.taskify_api.dto.request.TaskUpdateRequestDTO;
-import com.ferreira.taskify_api.dto.response.TaskResponseDTO;
+import com.ferreira.taskify_api.dto.request.task.TaskRequestDTO;
+import com.ferreira.taskify_api.dto.request.task.TaskUpdateRequestDTO;
+import com.ferreira.taskify_api.dto.response.task.TaskResponseDTO;
+import com.ferreira.taskify_api.dto.response.task.TaskSummaryResponseDTO;
 import com.ferreira.taskify_api.model.User;
 import com.ferreira.taskify_api.service.TaskService;
 import jakarta.validation.Valid;
@@ -37,8 +38,8 @@ public class TaskController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TaskResponseDTO>> findAll(@AuthenticationPrincipal User user) {
-        List<TaskResponseDTO> response = taskService.findAll(user);
+    public ResponseEntity<List<TaskSummaryResponseDTO>> findAll(@AuthenticationPrincipal User user) {
+        List<TaskSummaryResponseDTO> response = taskService.findAll(user);
         return ResponseEntity.ok(response);
     }
 

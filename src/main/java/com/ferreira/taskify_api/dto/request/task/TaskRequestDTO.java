@@ -1,4 +1,4 @@
-package com.ferreira.taskify_api.dto.request;
+package com.ferreira.taskify_api.dto.request.task;
 
 import com.ferreira.taskify_api.enums.Priority;
 import jakarta.validation.constraints.FutureOrPresent;

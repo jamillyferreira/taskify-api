@@ -1,7 +1,7 @@
 package com.ferreira.taskify_api.controller;
 
-import com.ferreira.taskify_api.dto.request.ProfileUpdateRequestDTO;
-import com.ferreira.taskify_api.dto.response.UserResponseDTO;
+import com.ferreira.taskify_api.dto.request.user.ProfileUpdateRequestDTO;
+import com.ferreira.taskify_api.dto.response.user.UserResponseDTO;
 import com.ferreira.taskify_api.model.User;
 import com.ferreira.taskify_api.service.ProfileService;
 import jakarta.validation.Valid;

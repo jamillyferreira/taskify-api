@@ -1,8 +1,8 @@
 package com.ferreira.taskify_api.service;
 
-import com.ferreira.taskify_api.dto.request.TaskRequestDTO;
-import com.ferreira.taskify_api.dto.request.TaskUpdateRequestDTO;
-import com.ferreira.taskify_api.dto.response.TaskResponseDTO;
+import com.ferreira.taskify_api.dto.request.task.TaskRequestDTO;
+import com.ferreira.taskify_api.dto.request.task.TaskUpdateRequestDTO;
+import com.ferreira.taskify_api.dto.response.task.TaskResponseDTO;
 import com.ferreira.taskify_api.enums.Priority;
 import com.ferreira.taskify_api.exception.ResourceNotFoundException;
 import com.ferreira.taskify_api.exception.TaskAccessDeniedException;

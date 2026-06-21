@@ -29,7 +29,7 @@ public class AuthService {
     private final UserMapper userMapper;
 
     public RegisterResponseDTO register(RegisterRequestDTO request) {
-        log.info("Tentativa de cadastro de novo usuário");
+        log.debug("Tentativa de cadastro de novo usuário");
 
         if (userRepository.existsByEmail(request.email())) {
             log.error("Tentativa de cadastro com e-mail já existente");
@@ -46,7 +46,7 @@ public class AuthService {
     }
 
     public LoginResponseDTO login(LoginRequestDTO request) {
-        log.info("Tentativa de login para o e-mail: {}", request.email());
+        log.debug("Tentativa de login para o e-mail: {}", request.email());
 
         Authentication auth = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.email(), request.password()));

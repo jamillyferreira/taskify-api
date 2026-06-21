@@ -1,0 +1,53 @@
+package com.ferreira.taskify_api.service;
+
+import com.ferreira.taskify_api.dto.request.ProfileUpdateRequestDTO;
+import com.ferreira.taskify_api.dto.response.UserResponseDTO;
+import com.ferreira.taskify_api.exception.BusinessException;
+import com.ferreira.taskify_api.mapper.user.UserMapper;
+import com.ferreira.taskify_api.model.User;
+import com.ferreira.taskify_api.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class ProfileService {
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+
+    public UserResponseDTO getMyProfile(User authenticatedUser) {
+        log.debug("Buscando perfil do usuário - ID: {}", authenticatedUser.getId());
+
+        return userMapper.toUserResponseDTO(authenticatedUser);
+    }
+
+    public UserResponseDTO updateMyProfile(User authenticatedUser, ProfileUpdateRequestDTO request) {
+        log.debug("Atualizando perfio do usuário - ID: {}", authenticatedUser.getId());
+
+        if (request.name() != null && !request.name().isBlank()) authenticatedUser.setName(request.name());
+
+        if (request.email() != null && !request.email().isBlank()) {
+            if (!request.email().equals(authenticatedUser.getEmail())) {
+                if (userRepository.existsByEmail(request.email())) {
+                    throw new BusinessException("E-mail já está em uso");
+                }
+                authenticatedUser.setEmail(request.email());
+            }
+        }
+
+        User updatedUser = userRepository.save(authenticatedUser);
+        log.info("Perfil atualizado com sucesso - ID: {}", authenticatedUser.getId());
+
+        return userMapper.toUserResponseDTO(updatedUser);
+    }
+
+    public void deleteMyAccount(User authenticatedUser) {
+        log.debug("Deletando conta do usuário - ID: {}", authenticatedUser.getId());
+
+        userRepository.delete(authenticatedUser);
+
+        log.info("Conta deletada com sucesso - ID: {}", authenticatedUser.getId());
+    }
+}

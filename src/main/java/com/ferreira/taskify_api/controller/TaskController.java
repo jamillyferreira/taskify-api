@@ -1,5 +1,6 @@
 package com.ferreira.taskify_api.controller;
 
+import com.ferreira.taskify_api.doc.TaskControllerDoc;
 import com.ferreira.taskify_api.dto.request.task.TaskRequestDTO;
 import com.ferreira.taskify_api.dto.request.task.TaskUpdateRequestDTO;
 import com.ferreira.taskify_api.dto.response.task.TaskResponseDTO;
@@ -18,7 +19,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/tasks")
-public class TaskController {
+public class TaskController implements TaskControllerDoc {
     private final TaskService taskService;
 
     @PostMapping

@@ -110,7 +110,7 @@ class TaskServiceTest {
 
     @Test
     @DisplayName("Deve criar tarefa com sucesso")
-    void shouldCreateTaskWithSuccess() {
+    void shouldCreateTask_WithSuccess() {
 
         when(taskMapper.toEntity(requestDTO)).thenReturn(task);
         when(taskRepository.save(any(Task.class))).thenReturn(task);
@@ -131,7 +131,7 @@ class TaskServiceTest {
 
     @Test
     @DisplayName("Deve lançar excecao ao criar tarefa com dados invalidos")
-    void shouldCThrowExceptionWhenCreatingTaskWithInvalidData() {
+    void shouldThrowException_WhenCreatingTask_WithInvalidData() {
         when(taskMapper.toEntity(any(TaskRequestDTO.class))).thenThrow(new IllegalArgumentException("Invalid data"));
 
         assertThrows(IllegalArgumentException.class, () ->
@@ -156,7 +156,7 @@ class TaskServiceTest {
 
     @Test
     @DisplayName("Deve lançar ResourceNotFoundException ao buscar tarefa inexistente")
-    void shouldThrowResourceNotFoundExceptionWhenTaskNotFound() {
+    void should_ThrowResourceNotFoundExceptionWhenTaskNotFound() {
         when(taskRepository.findById(999L)).thenReturn(Optional.empty());
 
         assertThrows(ResourceNotFoundException.class, () ->
@@ -168,7 +168,7 @@ class TaskServiceTest {
 
     @Test
     @DisplayName("Deve lançar TaskAccessDeniedException ao buscar tarefa de outro usuário")
-    void shouldThrowTaskAccessDeniedExceptionWhenFindingOtherUsersTask() {
+    void should_ThrowTaskAccessDeniedException_WhenFindingOtherUsersTask() {
         when(taskRepository.findById(1L)).thenReturn(Optional.of(task));
 
         assertThrows(TaskAccessDeniedException.class, () ->

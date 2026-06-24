@@ -1,5 +1,6 @@
 package com.ferreira.taskify_api.controller;
 
+import com.ferreira.taskify_api.doc.AuthControllerDoc;
 import com.ferreira.taskify_api.dto.request.auth.LoginRequestDTO;
 import com.ferreira.taskify_api.dto.request.auth.RegisterRequestDTO;
 import com.ferreira.taskify_api.dto.response.auth.LoginResponseDTO;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
-public class AuthController {
+public class AuthController implements AuthControllerDoc {
     private final AuthService authService;
 
     @PostMapping("/register")

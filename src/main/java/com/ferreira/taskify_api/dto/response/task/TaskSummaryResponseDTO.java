@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public record TaskSummaryResponseDTO(
         Long id,
-        String userName,
+        String ownerName,
         String title,
         String description,
         boolean completed,

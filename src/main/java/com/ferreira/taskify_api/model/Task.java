@@ -4,6 +4,7 @@ import com.ferreira.taskify_api.enums.Priority;
 import com.ferreira.taskify_api.exception.BusinessException;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -11,7 +12,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tasks")
@@ -36,9 +37,9 @@ public class Task extends AuditBase {
     private LocalDate dueDate;
 
     @Column(nullable = false)
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private Priority priority = Priority.MEDIUM;
-
 
     public void toggleCompleted() {
         this.completed = !this.completed;

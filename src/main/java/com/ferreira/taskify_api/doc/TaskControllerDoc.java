@@ -29,7 +29,8 @@ public interface TaskControllerDoc {
             summary = "Criar nova tarefa",
             description = """
                     Cria uma nova tarefa para o usuário autenticado
-                    Regras de negócio:
+                    
+                    **Regras de negócio:**
                     - Título é obrigatório (mínimo 3 caracteres)
                     - Data de vencimento deve ser futura
                     - Prioridade deve ser LOW, MEDIUM ou HIGH
@@ -63,7 +64,8 @@ public interface TaskControllerDoc {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Tarefa encontrada com sucesso"),
+                    description = "Tarefa encontrada com sucesso",
+                    content = @Content(schema = @Schema(implementation = TaskResponseDTO.class))),
             @ApiResponse(
                     responseCode = "404",
                     description = "Tarefa não encontrada",
@@ -84,7 +86,8 @@ public interface TaskControllerDoc {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Lista retornada com sucesso"),
+                    description = "Lista retornada com sucesso",
+                    content = @Content(schema = @Schema(implementation = TaskSummaryResponseDTO.class))),
             @ApiResponse(
                     responseCode = "401",
                     description = "Não autorizado - Token JWT inválido, expirado ou ausente",
@@ -98,7 +101,8 @@ public interface TaskControllerDoc {
             description = "Atualiza os dados de uma tarefa existente")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "Tarefa atualizada com sucesso"),
+                    description = "Tarefa atualizada com sucesso",
+                    content = @Content(schema = @Schema(implementation = TaskResponseDTO.class))),
             @ApiResponse(
                     responseCode = "404",
                     description = "Tarefa não encontrada",
@@ -123,7 +127,7 @@ public interface TaskControllerDoc {
             description = "Atualiza status de uma tarefa específica")
     @ApiResponses(value = {
             @ApiResponse(
-                    responseCode = "200",
+                    responseCode = "204",
                     description = "Status da tarefa atualizado com sucesso"),
             @ApiResponse(
                     responseCode = "404",
@@ -142,7 +146,7 @@ public interface TaskControllerDoc {
     @Operation(summary = "Deletar tarefa", description = "Remove uma tarefa do sistema")
     @ApiResponses(value = {
             @ApiResponse(
-                    responseCode = "200",
+                    responseCode = "204",
                     description = "Tarefa deletada com sucesso"),
             @ApiResponse(
                     responseCode = "404",

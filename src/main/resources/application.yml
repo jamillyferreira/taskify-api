@@ -5,6 +5,7 @@ spring:
     name: taskify-api
   jpa:
     show-sql: false
+    open-in-view: false
     hibernate:
       ddl-auto: validate
   flyway:

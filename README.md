@@ -1,12 +1,8 @@
 # Taskify API
 
-API REST de gerenciamento de tarefas com autenticação JWT, desenvolvida com Java e Spring Boot.
-
-## Objetivo
-
-Um projeto de portfólio focado em demonstrar boas práticas de desenvolvimento backend com Java e Spring Boot: 
-autenticação stateless com JWT, persistência com JPA e Flyway, documentação com OpenAPI e 
-cobertura de testes unitários básicos com JUnit 5 e Mockito.
+Um projeto de **gerenciamento de tarefas** focado em demonstrar boas práticas de desenvolvimento backend com **Java** e **Spring Boot**, com
+autenticação stateless com **JWT**, **persistência com JPA e Flyway**, documentação com **OpenAPI** e 
+cobertura de **testes unitários** básicos com **JUnit 5** e **Mockito**.
 
 ## Funcionalidades
 
@@ -61,8 +57,36 @@ cobertura de testes unitários básicos com JUnit 5 e Mockito.
 | PATCH  | `/api/tasks/{id}/toggle-complete` | Alterna status da tarefa                  |
 | DELETE | `/api/tasks/{id}`                 | Remove uma tarefa                         |
 
-Documentação interativa disponível em (inserir link depois)
+Documentação interativa disponível em: https://taskify-api-jiws.onrender.com/scalar
 
+## Como executar
+
+**Pré-requisitos**
+
+* Docker e Docker Compose instalados
+
+```shell
+# Clone o repositório
+git clone https://github.com/jamillyferreira/taskify-api
+cd taskify-api
+
+# Configure as variáveis de ambiente e edite o .env com seus valores
+cp .env.example .env
+
+# Suba a aplicação com o banco
+docker compose up -d --build
+```
+A API estará disponível em: http://localhost:8080
+
+### Executando localmente (sem Docker para a app)
+
+```shell
+# Suba apenas o banco
+docker compose up postgres -d
+
+# Roda a aplicação
+./mvnw spring-boot:run
+```
 ## Regras de Negócio
 
 * Usuário só pode visualizar, editar e deletar suas próprias tarefas

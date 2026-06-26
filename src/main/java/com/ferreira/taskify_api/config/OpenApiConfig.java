@@ -25,18 +25,22 @@ public class OpenApiConfig {
                                 .name("Jamilly Ferreira")
                                 .email("jamillyferreira.dev@gmail.com")
                                 .url("https://github.com/jamillyferreira")
-                        )
-                )
-                .servers(List.of(new Server()
-                        .url("http://localhost:8080")
-                        .description("Servidor Local"))
-                ).components(new Components()
+                        ))
+                .servers(List.of(
+                        new Server()
+                                .url("http://localhost:8080")
+                                .description("Servidor Local"),
+                        new Server()
+                                .url("https://taskify-api-jiws.onrender.com")
+                                .description("Servidor em Produção")
+                ))
+                .components(new Components()
                         .addSecuritySchemes("bearerAuth", new SecurityScheme()
                                 .type(SecurityScheme.Type.HTTP)
                                 .scheme("bearer")
                                 .bearerFormat("JWT")
                                 .description("Token JWT obtido no endpoint /api/auth/login")
-                        )
-                ).addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
+                        ))
+                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
     }
 }

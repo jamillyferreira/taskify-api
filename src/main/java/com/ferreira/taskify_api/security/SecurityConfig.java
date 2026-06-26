@@ -42,7 +42,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(
                                 "/scalar/**",
-                                "v3/api-docs/**",
+                                "/v3/api-docs/**",
                                 "/v3/api-docs.yaml"
                         ).permitAll()
                         .anyRequest().authenticated()

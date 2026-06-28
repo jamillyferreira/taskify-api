@@ -57,7 +57,17 @@ cobertura de **testes unitários** básicos com **JUnit 5** e **Mockito**.
 | PATCH  | `/api/tasks/{id}/toggle-complete` | Alterna status da tarefa                  |
 | DELETE | `/api/tasks/{id}`                 | Remove uma tarefa                         |
 
-Documentação interativa disponível em: https://taskify-api-jiws.onrender.com/scalar
+
+## Deploy (Produção)
+A API está disponível em produção no [Render.com](https://render.com) (plano gratuito).
+
+**Base URL**: `https://taskify-api-jiws.onrender.com`
+
+**Documentação Interativa**: [https://taskify-api-jiws.onrender.com/scalar](https://taskify-api-jiws.onrender.com/scalar)
+
+> **Importante**: A aplicação está no plano gratuito do Render. Após 15 minutos sem uso, o serviço "hiberna".
+> A **primeira requisição** pode levar **até 30-50 segundos** para responder enquanto o servidor "acorda".
+> Aguarde pacientemente ou recarregue a página
 
 ## Como executar
 
